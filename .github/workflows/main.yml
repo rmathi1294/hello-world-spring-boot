@@ -59,7 +59,7 @@ jobs:
       - run: docker pull rmathi/hello-world-spring-boot:latest
       - run: docker images
       - name: Run a container
-        run: docker run -rm -d -p 8080:8080 rmathi/hello-world-spring-boot:latest
+        run: docker run -d --name hello-world -p 8080:8080 rmathi/hello-world-spring-boot:latest
       - run: docker ps
       - name: Curl the output
         run: curl localhost:8080
