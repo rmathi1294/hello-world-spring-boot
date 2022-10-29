@@ -42,12 +42,11 @@ jobs:
         with:
           context: .
           push: true
-          tags: $DOCKER_USERNAME/$DOCKER_REPO:$GITHUB_SHA,$DOCKER_USERNAME/$DOCKER_REPO:latest
+          tags: $DOCKER_USERNAME/$DOCKER_REPO:${{GITHUB_SHA}},$DOCKER_USERNAME/$DOCKER_REPO:latest
           #tags: rmathi/hello-world-spring-boot:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_REPO: ${{ secrets.DOCKER_REPO }}
-          GITHUB_SHA: ${{ GITHUB_SHA }}
                     
   deploy-docker-image:
     name: Deploy Docker image
