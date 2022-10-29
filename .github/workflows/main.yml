@@ -37,21 +37,13 @@ jobs:
         with: 
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Docker meta
-        id: docker_meta
-        uses: crazy-max/ghaction-docker-meta@v1
-        with:
-          images: l7r7/sample
-          tag-custom: latest
-          tag-semver: |
-            {{raw}}
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: $DOCKER_USERNAME/$DOCKER_REPO:${{ steps.docker_meta.outputs.tags }},$DOCKER_USERNAME/$DOCKER_REPO:latest
-          #tags: rmathi/hello-world-spring-boot:latest
+          #tags: $DOCKER_USERNAME/$DOCKER_REPO:${{ steps.docker_meta.outputs.tags }},$DOCKER_USERNAME/$DOCKER_REPO:latest
+          tags: rmathi/hello-world-spring-boot:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_REPO: ${{ secrets.DOCKER_REPO }}
